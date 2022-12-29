@@ -58,6 +58,21 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // Change keys that meet a criteria for a period of time
+  document.addEventListener("keydown", myFunction);
+
+  function myFunction(e) {
+    const audio = document.querySelector(`audio[data-key = "${e.keyCode}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
+
+    const key = document.querySelector(`div[data-key = "${e.keyCode}"`);
+    key.classList.add('playing');
+    setTimeout(function(){
+        key.classList.remove('playing'); 
+      }, 100);
+  }
 
 </script>
 
